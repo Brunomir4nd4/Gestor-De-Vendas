@@ -1,0 +1,16 @@
+#container-da-barra-de-navegacao {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 55px;
+}
+
+#itens-da-barra-de-navegacao a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#logoMarca {
+    height: 50px;
+    width: 60px;
+}

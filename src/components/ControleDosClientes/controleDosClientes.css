@@ -1,0 +1,26 @@
+:root {
+    --cor-primaria: #094275;
+    --cor-secundaria: #DC7364;
+    --cor-terciaria: #F0D5C0;
+    /* fonte: Montserrat */
+}
+
+#body {
+    /* border: 1px solid red; */
+    height: 100vh;
+}
+
+#tabela-clientes {
+    background-color: #fff;
+    border: 1px solid black;
+    padding: 30px;
+    height: 80vh;
+}
+
+.data {
+    color: red;
+}
+
+.hide{
+    display: none;
+}
