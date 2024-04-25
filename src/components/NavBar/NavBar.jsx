@@ -1,5 +1,6 @@
 import './NavBar.css';
 import logoMarca from "../../img/logoMenor.jpeg";
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
     
@@ -11,8 +12,8 @@ export default function NavBar() {
             <div id="itens-da-barra-de-navegacao">
                 {
                     currentUrl.includes('/controledosclientes') ? 
-                    <a href="/">Painel</a> :
-                    <a href="/controledosclientes">Clientes</a>
+                    <Link to={'/'}>Painel</Link> :
+                    <Link to={'/controledosclientes'}>Clientes</Link>
                 }
             </div>
         </div>

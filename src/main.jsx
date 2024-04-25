@@ -7,14 +7,12 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-    children: [
-      {
-        path: '/controledosclientes',
-        element: <ControleDosClientes />
-      }
-    ]
+    element: <Home />
   },
+  {
+    path: '/controledosclientes',
+    element: <ControleDosClientes />
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
