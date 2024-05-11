@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --cor-primaria: #094275;
+    --cor-secundaria: #DC7364;
+    --cor-terciaria: #F0D5C0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--cor-primaria);
+}
+
+#main-pagina-painel{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: rgb(0, 4, 66);
+}
+
+#container-do-formulario {
+    border-radius: 7px;
+    padding: 30px 10px;
+    margin: auto;
+    min-width: 70vw;
+    max-height: 70vh;
+    font-size: 2rem;
+    text-align: center;
+    background-color: #094275;
+    box-shadow: 0 0 80px rgb(0, 0, 0);
+    border: 3px solid rgba(0, 0, 0, 0.7);
+}
+
+#formulario  {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-control {
+    margin-bottom: 20px;
+    max-width: 90%;
+    margin: 15px auto;
+    border: none;
+    border-bottom: 2px solid black;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.516);
+
+}
+
+.btn {
+    min-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.6em;
+    background-color: #dc7464c1;
+    border: 3px solid #cf604c;
+    transition: ease 300ms;
+}
+
+.btn:hover {
+    border: 3px solid #bd5846;
+    background-color: #DC7364;
+    cursor: pointer;
+}
+
