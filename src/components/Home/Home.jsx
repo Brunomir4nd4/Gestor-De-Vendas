@@ -1,7 +1,11 @@
-import '../../css/index.css'
 import NavBar from '../NavBar/NavBar'
 import Footer from '../Footer/Footer'
 import { DataAtual } from '../../funcoes/DataAtual'
+import BotaoDownload from '../BotaoDowload'
+import CompartilharWhatsApp from '../CompartilharWhatsApp'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './home.css'
+
 export default function Home() {
     let CLIENTES = {
         id: 0,
@@ -40,17 +44,24 @@ export default function Home() {
         <NavBar />
         <main id="main-pagina-painel">
             <div id="container-do-formulario">
-                <label>Nome do cliente</label>
-                <input type="text" id='nome-do-cliente' placeholder="Digite aqui..."/>
+                <label>Cliente</label>
+                <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control" id='nome-do-cliente' placeholder="nome do cliente" aria-describedby="addon-wrapping"/>
+                </div>
 
-                <label>Quantidade de litros</label>
-                <input type="number" id='quantidade-de-litros' placeholder="Digite aqui..."/>
+                <label>Litros</label>
+                <div class="input-group flex-nowrap">
+                    <input type="number" class="form-control" id='quantidade-de-litros' placeholder="quantidade em litros" aria-describedby="addon-wrapping"/>
+                </div>
 
-                <label>Valor cobrado</label>
-                <input type="number" id='valor-cobrado' placeholder="Digite aqui..."/>
-
-                <button onClick={novoCliente}>Enviar</button>
+                <label>Valor Total</label>
+                <div class="input-group flex-nowrap">
+                    <input type="number" class="form-control" id='valor-cobrado' placeholder="valor total" aria-describedby="addon-wrapping"/>
+                </div>
+                <button onClick={novoCliente} type="button" class="btn btn-primary">Enviar!</button>
             </div>
+            {/* <BotaoDownload />
+            <CompartilharWhatsApp /> */}
         </main>
         <Footer />
         </>

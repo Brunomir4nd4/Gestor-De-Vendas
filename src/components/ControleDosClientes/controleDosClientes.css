@@ -2,23 +2,45 @@
     --cor-primaria: #094275;
     --cor-secundaria: #DC7364;
     --cor-terciaria: #F0D5C0;
-    /* fonte: Montserrat */
 }
 
 #body {
-    /* border: 1px solid red; */
     height: 100vh;
 }
 
 #tabela-clientes {
     background-color: #fff;
-    border: 1px solid black;
-    padding: 30px;
     height: 80vh;
+    overflow: auto;
 }
 
 .data {
-    color: red;
+    background-color: #DC7364;
+    border-bottom: 1px solid #fff;
+    width: 100vw;
+    padding: 10px;
+}
+.table {
+    display: flex;
+    flex-direction: column;
+    border-collapse: collapse;
+    font-size: 1.2em;
+}
+
+.row{
+    display: table-row;
+}
+
+.cell{
+   display: table-cell;
+   width: 50px;
+   border: 1px solid black;
+   padding: 8px;
+}
+
+#teste {
+    width: 50px;
+
 }
 
 .hide{
