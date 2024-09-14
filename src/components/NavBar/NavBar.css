@@ -8,6 +8,7 @@
 #itens-da-barra-de-navegacao a{
     color: #fff;
     text-decoration: none;
+    margin-left: 10px;
 }
 
 #logoMarca {
