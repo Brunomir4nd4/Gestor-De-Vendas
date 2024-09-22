@@ -1,24 +1,12 @@
-#container-nome-e-pdf {
-    padding: 10px; 
-    display: flex;
-    height: 40px;
-    background-color: #DC7364;
-}
-
 #painel{
     background-color: #FDF5F4;
     width: 100vw;
+    height: 100vh;
 }
 
-#h2-nome-cliente {
-    font-size: 1.2em;
-    max-width: 200px;
-    font-weight: bold;
-}
-
-#button-pdf {
-    position: absolute;
-    right: 30px;
+#rodape-tabela-historico-do-cliente #btn-pdf {
+    float: right;
+    margin-right: 5px;
 }
 
 .historico {
@@ -31,18 +19,4 @@
     padding: 7px 10px;
     border-bottom: 1px solid #000;
     text-align: center;
-}
-
-.table {
-    display: flex;
-    flex-direction: column;
-    border-collapse: collapse;
-    font-size: 1.2em;
-    height: 85vh;
-}
-
-.celula{
-   display: table-cell;
-   margin: 0;
-   width: 100px;
 }

@@ -1,4 +1,4 @@
-export function DataEhIgual(clientes, index) {
+export default function DataEhIgual(clientes, index) {
     let size = clientes.length;
     let indexAnterior = index - 1;
     if (index == 0) {

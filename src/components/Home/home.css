@@ -56,7 +56,7 @@ label {
 
 }
 
-.btn {
+.btn-Vender {
     min-width: 70%;
     padding: 10px;
     border-radius: 10px;
@@ -67,7 +67,7 @@ label {
     transition: ease 300ms;
 }
 
-.btn:hover {
+.btn-Vender:hover {
     border: 3px solid #bd5846;
     background-color: #DC7364;
     cursor: pointer;

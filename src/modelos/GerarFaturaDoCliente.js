@@ -1,9 +1,9 @@
 import { jsPDF } from "jspdf";
 import { formatarData } from "./Formatadores.js";
 
-export function GerarFaturaDoCliente(historicoDoCliente, periodoDeCobrancaInicial, periodoDeCobrancaFinal) {
+export default function GerarFaturaDoCliente(historicoDoCliente, periodoDeCobrancaInicial, periodoDeCobrancaFinal) {
     const doc = new jsPDF();
-    const NOME_DO_CLIENTE = historicoDoCliente[0].nome;
+    const NOME_DO_CLIENTE = historicoDoCliente[0].nomeDoCliente;
     const VALOR_TOTAL_DA_FATURA = ObterValorDasVendasDoPeriodoSolicitado(historicoDoCliente, periodoDeCobrancaInicial, periodoDeCobrancaFinal);
 
     let y = 20; // Posição inicial do y
@@ -38,12 +38,13 @@ export function GerarFaturaDoCliente(historicoDoCliente, periodoDeCobrancaInicia
 
 const ObterValorDasVendasDoPeriodoSolicitado = function(historicoDoCliente, periodoDeCobrancaInicial, periodoDeCobrancaFinal) {
     let totalFatura = 0.0;
-    historicoDoCliente.map((cliente) => {
-        const data = formatarData(cliente.data);
+
+    historicoDoCliente.map((venda) => {
+        const data = formatarData(venda.data);
         const dentroDoPeriodo = periodoDeCobrancaFinal ?  data >= periodoDeCobrancaInicial && data <= periodoDeCobrancaFinal
                                                         : data >= periodoDeCobrancaInicial;
         if (dentroDoPeriodo) 
-            totalFatura += cliente.valorTotal;
+            totalFatura += venda.valor;
     });
 
     return totalFatura.toFixed(2);
@@ -54,14 +55,14 @@ const DefinirListagemDasVendasDoPeriodoSolicitado = function(doc, y,  historicoD
     const col2 = 90;
     const col3 = 140;
 
-    historicoDoCliente.forEach((cliente) => {
-        const data = formatarData(cliente.data);
+    historicoDoCliente.forEach((venda) => {
+        const data = formatarData(venda.data);
         const dentroDoPeriodo = periodoDeCobrancaFinal ?  data >= periodoDeCobrancaInicial && data <= periodoDeCobrancaFinal
                                                         : data >= periodoDeCobrancaInicial;
         if (dentroDoPeriodo) {
-            doc.text(cliente.totalLitros.toString(), col1, y);
-            doc.text("R$ " + cliente.valorTotal.toString(), col2, y);
-            doc.text(cliente.data.toString(), col3, y);
+            doc.text(venda.litragem.toString(), col1, y);
+            doc.text("R$ " + venda.valor.toFixed(2).toString(), col2, y);
+            doc.text(venda.data.toString(), col3, y);
             y += 10;
         }
     });
