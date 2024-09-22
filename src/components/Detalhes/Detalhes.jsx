@@ -1,35 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar/NavBar'
-import Footer from '../Footer/Footer'
-import { json, useParams } from 'react-router-dom' 
-import './Detalhes.css'
-import { GerarFaturaDoCliente } from '../../modelos/GerarFaturaDoCliente'
+import React, { useEffect, useMemo, useState } from 'react';
+import NavBar from '../NavBar/NavBar';
+import Footer from '../Footer/Footer';
+import { useParams } from 'react-router-dom' ;
+import GerarFaturaDoCliente from '../../modelos/GerarFaturaDoCliente';
+import Table from '../Table/Table';
+import './Detalhes.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Detalhes() {
-    const CHAVE_CLIENTES = 'clientes';
-    const [CLIENTE_DETALHADO, setClienteDetalhado] = useState([]);
-    const NOME_DO_CLIENTE_DETALHADO = useParams().profileName;
+    const NOME_DO_CLIENTE_DETALHADO = useParams().profileName.toUpperCase();
+    const CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS = 'historicoDeVendas';
+    const [HISTORICO_DO_CLIENTE_DETALHADO, setHistoricoDoClientedetalhado] = useState([]);
 
     useEffect(() => {
-        if (localStorage.getItem(CHAVE_CLIENTES)) {
-            setClienteDetalhado(() => {
-                const clientes = JSON.parse(localStorage.getItem(CHAVE_CLIENTES));
-                const clientesEncontrados = clientes.filter((cliente) => cliente.nome === NOME_DO_CLIENTE_DETALHADO);
+        if (localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS)) {
+            setHistoricoDoClientedetalhado(() => {
+                const vemdas = JSON.parse(localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS));
+                const vendasVinculadasAoClienteDetalhado = vemdas.filter((venda) => venda.nomeDoCliente.toUpperCase() === NOME_DO_CLIENTE_DETALHADO);
     
-                return clientesEncontrados;
+                return vendasVinculadasAoClienteDetalhado;
             });
         }
-    }, [CHAVE_CLIENTES, NOME_DO_CLIENTE_DETALHADO]);
-    
-    function apresentaDados(cliente) {
-        return (
-            <div className='historico-conteudo'>
-                <p className='celula'>R$ {cliente.valorTotal}</p>
-                <p className='celula'>{cliente.totalLitros}</p>
-                <p className='celula'>{cliente.data}</p>
-            </div>
-        )
-    }
+    }, [CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS, NOME_DO_CLIENTE_DETALHADO]);
+
+    const columns = useMemo(
+        () => [{
+            Header: "Histórico do Cliente - " + NOME_DO_CLIENTE_DETALHADO,
+            columns: [
+                {
+                    Header: "Litragem",
+                    accessor: "litragem"
+                },
+                {
+                    Header: "Valor Cobrado",
+                    accessor: "valor"
+                },
+                {
+                    Header: "Data de Venda",
+                    accessor: "data"
+                }
+            ]
+        }],
+    []);
 
     function AoClicarAbrirModalDeDefinirPeriodo(){
         let dialog2 = xdialog.create({
@@ -51,7 +63,7 @@ export default function Detalhes() {
                 let dataInicial = document.getElementById('dataInicial').value;
                 let dataFinal = document.getElementById('dataFinal').value;
                 
-                GerarFaturaDoCliente(CLIENTE_DETALHADO, dataInicial, dataFinal);
+                GerarFaturaDoCliente(HISTORICO_DO_CLIENTE_DETALHADO, dataInicial, dataFinal);
             } 
         });
         
@@ -62,22 +74,14 @@ export default function Detalhes() {
         <>
             <NavBar />
             <div id="painel">
-                <div id='container-nome-e-pdf'>
-                    <h2 id='h2-nome-cliente'>Cliente: {NOME_DO_CLIENTE_DETALHADO}</h2>
-                    <button id="button-pdf" onClick={() => AoClicarAbrirModalDeDefinirPeriodo()}>Gerar Fatura</button>
-                </div>
                 <div className="historico">
-                    <div className="table">
-                        <div className='historico-conteudo thead'>
-                            <p className='celula'>Valor Cabrado</p>
-                            <p className='celula'>Litragem</p>
-                            <p className='celula'>Data da Venda</p>
-                        </div>
-                            {CLIENTE_DETALHADO.map((cliente) => apresentaDados(cliente))}
-                    </div>
+                    <Table columns={columns} data={HISTORICO_DO_CLIENTE_DETALHADO} />
+                </div>
+                <div id="rodape-tabela-historico-do-cliente">
+                    <button id="btn-pdf" className="btn btn-primary" onClick={() => AoClicarAbrirModalDeDefinirPeriodo()}>Gerar Fatura</button>
                 </div>
             </div>
             <Footer />
         </>
-      )
+    )
 }

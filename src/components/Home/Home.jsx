@@ -1,32 +1,32 @@
 import NavBar from '../NavBar/NavBar'
 import Footer from '../Footer/Footer'
-import { DataAtual } from '../../model/DataAtual'
+import DataAtual from '../../modelos/DataAtual'
+import { VENDA } from '../../modelos/Venda';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css'
-import { CLIENTE } from '../../model/Cliente';
 
 export default function Home() {
-    let CHAVE_LOCAL_STORAGE_CLIENTES = 'clientes';
+    const CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS = 'historicoDeVendas';
     
-    const novoCliente = () =>{
-        let clientes = [];
+    const novaVenda = function() {
+        let vendas = [];
         const nome = document.querySelector('#nome-do-cliente').value;
         const quantidadeLitros = document.querySelector('#quantidade-de-litros').value;
         const valorCobrado = document.querySelector('#valor-cobrado').value;
-        CLIENTE.nome = nome;
-        CLIENTE.totalLitros = quantidadeLitros;
-        CLIENTE.valorTotal = valorCobrado;
-        CLIENTE.data = DataAtual();
+        VENDA.nomeDoCliente = nome.toUpperCase();
+        VENDA.litragem = parseFloat(quantidadeLitros);
+        VENDA.valor = parseFloat(valorCobrado);
+        VENDA.data = DataAtual();
         
-        if (localStorage.getItem(CHAVE_LOCAL_STORAGE_CLIENTES)) {
-            clientes = JSON.parse(localStorage.getItem(CHAVE_LOCAL_STORAGE_CLIENTES));
-            CLIENTE.id = clientes[clientes.length-1].id + 1;
-            clientes.push(CLIENTE);
-            localStorage.setItem(CHAVE_LOCAL_STORAGE_CLIENTES, JSON.stringify(clientes));
+        if (localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS)) {
+            vendas = JSON.parse(localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS));
+            VENDA.id = vendas[vendas.length-1].id + 1;
+            vendas.unshift(VENDA);
+            localStorage.setItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS, JSON.stringify(vendas));
         }
         else {
-            clientes.push(CLIENTE);
-            localStorage.setItem(CHAVE_LOCAL_STORAGE_CLIENTES, JSON.stringify(clientes));
+            vendas.push(VENDA);
+            localStorage.setItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS, JSON.stringify(vendas));
         }
     }
 
@@ -49,7 +49,7 @@ export default function Home() {
                 <div class="input-group flex-nowrap">
                     <input type="number" class="form-control" id='valor-cobrado' placeholder="valor total..." aria-describedby="addon-wrapping"/>
                 </div>
-                <button onClick={novoCliente} type="button" class="btn btn-primary">Vender</button>
+                <button onClick={novaVenda} type="button" id="btn-Vender" className="btn btn-primary">Vender</button>
             </div>
         </main>
         <Footer />

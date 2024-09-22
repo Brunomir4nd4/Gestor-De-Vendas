@@ -1,31 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/NavBar'
 import Footer from '../Footer/Footer'
-import './ListagemClientes.css'
 import { Link } from 'react-router-dom'
+import './ListagemClientes.css'
 
 export default function ListagemClientes() {
     
-    const [clientes, setClientes] = useState([]);
-    const CHAVE_CLIENTES = 'clientes';
+    const [nomeDosClientes, setNomeDosClientes] = useState([]);
+    const CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS = 'historicoDeVendas';
 
     useEffect(() => {
-        if (localStorage.getItem(CHAVE_CLIENTES)) {
-            setClientes(JSON.parse(localStorage.getItem(CHAVE_CLIENTES)));
+        if (localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS)) {
+            setNomeDosClientes(() => {
+                const vendas = JSON.parse(localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS));
+                return obterNomesFiltrados(vendas);
+            });
         }
     }, []);
 
-    function apresentaClientes(cliente, index) {
+    function obterNomesFiltrados(vendas) {
+        const nomes = [];
+        nomes.push(vendas[0].nomeDoCliente.toUpperCase());
+        
+        vendas.forEach((venda) => {
+            let flag = true;
+            nomes.forEach((nome) => {
+                if (venda.nomeDoCliente.toUpperCase() === nome)
+                    flag = false;
+            })
+
+            if (flag)
+                nomes.push(venda.nomeDoCliente.toUpperCase());
+        })
+
+        return nomes.sort();
+    }
+
+    function apresentarClientes(nomeDoCliente) {
         return (
-            <Link to={`../detalhes/${cliente.nome}`} className='Link-com-nome'>{cliente.nome}</Link>
+            <Link to={`../detalhes/${nomeDoCliente}`} className='nome'>
+                <li>{nomeDoCliente}</li>
+            </Link>
         )
     }
 
   return (
     <>
         <NavBar />
-        <div id="apresentacliente">
-            {clientes.map((cliente, index) => apresentaClientes(cliente, index))}
+        <div id="listaDeClientes">
+            <ul>
+                {nomeDosClientes.map((nome) => apresentarClientes(nome))}
+            </ul>
         </div>
         <Footer />
     </>

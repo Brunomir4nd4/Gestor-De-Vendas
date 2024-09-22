@@ -2,7 +2,6 @@
     --cor-primaria: #094275;
     --cor-secundaria: #DC7364;
     --cor-terciaria: #F0D5C0;
-    /* fonte: Montserrat */
 }
 
 footer {
@@ -13,17 +12,16 @@ footer {
     color: #fff;
 }
 
-footer #container-do-rodape #footer-menu {
-    list-style: none;
-}
-
-
 footer #container-do-rodape{
     height: 20px;
     margin-left: 10px;
     width: 90%;
     display: flex;
     margin: auto;
+}
+
+footer #container-do-rodape #footer-menu {
+    list-style: none;
 }
 
 footer #rights {
