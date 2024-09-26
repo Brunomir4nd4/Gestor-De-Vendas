@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import { useParams } from 'react-router-dom' ;
-import GerarFaturaDoCliente from '../../modelos/GerarFaturaDoCliente';
+import GerarFaturaDoCliente from '../../Servicos/GerarFaturaDoCliente';
 import Table from '../Table/Table';
 import './Detalhes.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
