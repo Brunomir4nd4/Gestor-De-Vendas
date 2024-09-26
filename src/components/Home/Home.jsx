@@ -19,7 +19,7 @@ export default function Home() {
     return (
         <>
         <NavBar />
-        <main id="main-pagina-painel">
+        <main id="home">
             <form onSubmit={handleSubmit(_aoClicarNoBotaoVender)}>
                 <label>Cliente</label>
                 <div className="input-group flex-nowrap">
@@ -35,7 +35,7 @@ export default function Home() {
                         })} 
                         placeholder="Nome..."  />
 
-                    {errors.cliente && <span>{errors.cliente.message}</span>}
+                    {errors.nomeDoCliente && <span class="mensagem-de-validacao">{errors.nomeDoCliente.message}</span>}
                 </div>
 
                 <label>Litragem</label>
@@ -53,7 +53,7 @@ export default function Home() {
                         })} 
                         placeholder="Litragem..."  />
 
-                    {errors.litragem && <span>{errors.litragem.message}</span>}
+                    {errors.litragem && <span class="mensagem-de-validacao">{errors.litragem.message}</span>}
                 </div>
 
                 <label>Valor Cobrado</label>
@@ -71,7 +71,7 @@ export default function Home() {
                         })} 
                         placeholder="Valor..." />
 
-                    {errors.valorCobrado && <span>{errors.valorCobrado.message}</span>}
+                    {errors.valor && <span class="mensagem-de-validacao">{errors.valor.message}</span>}
                 </div>
 
                 <button type="submit" id="btn-Vender" className="btn btn-primary">Vender</button>

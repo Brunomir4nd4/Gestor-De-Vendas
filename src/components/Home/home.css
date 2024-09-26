@@ -14,49 +14,52 @@ body {
     background-color: var(--cor-primaria);
 }
 
-#main-pagina-painel{
-    height: 80vh;
+#home{
+    height: 95vh;
     display: flex;
     align-items: center;
     background-color: rgb(0, 4, 66);
 }
 
-#container-do-formulario {
+#home form {
     border-radius: 7px;
     padding: 30px 10px;
     margin: auto;
-    min-width: 70vw;
-    max-height: 70vh;
-    font-size: 2rem;
+    min-width: 90vw;
+    height: 80vh;
     text-align: center;
     background-color: #094275;
     box-shadow: 0 0 80px rgb(0, 0, 0);
     border: 3px solid rgba(0, 0, 0, 0.7);
 }
 
-#formulario  {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
 label {
     font-weight: bold;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 2rem;
 }
 
-.form-control {
+.mensagem-de-validacao {
+    color: red;
+}
+
+#home form .input-group {
+    flex-direction: column;
+    display: flex;
+}
+
+#home form .form-control {
     margin-bottom: 20px;
-    max-width: 90%;
+    width: 90%;
     margin: 15px auto;
     border: none;
     border-bottom: 2px solid black;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.516);
-
+    border-radius: 7px;
 }
 
-.btn-Vender {
+#btn-Vender {
     min-width: 70%;
     padding: 10px;
     border-radius: 10px;
@@ -65,9 +68,10 @@ label {
     background-color: #dc7464c1;
     border: 3px solid #cf604c;
     transition: ease 300ms;
+    font-size: 1.3rem;
 }
 
-.btn-Vender:hover {
+#btn-Vender:hover {
     border: 3px solid #bd5846;
     background-color: #DC7364;
     cursor: pointer;

@@ -1,5 +1,5 @@
 import DataAtual from './DataAtual'
-import { VENDA } from '../Modelos/Venda';
+import { VENDA } from '../modelos/Venda';
 
 export function CriarVenda(nome, listragem, valor) {
     const CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS = 'historicoDeVendas';
