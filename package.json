@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fluentui/react": "^8.121.13",
+    "@fluentui/react-components": "^9.56.5",
+    "@fluentui/react-icons": "^2.0.267",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
@@ -17,6 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.0",
     "react-table": "^7.8.0"
   },

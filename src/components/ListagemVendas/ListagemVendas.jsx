@@ -9,39 +9,11 @@ export default function ListagemVendas() {
   const [vendas, setVendas] = useState([]);
 
   useEffect(() => {
-    const vendas = localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS);
+    let vendas = JSON.parse(localStorage.getItem(CHAVE_DE_ACESSO_DO_HISTORICO_DE_VENDAS));
     if (vendas) {
-      setVendas(JSON.parse(vendas));
+      setVendas(vendas);
     }
   }, []);
-
-  // Colunas da nossa tabela
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Vendas",
-        columns: [
-          {
-            Header: "Cliente",
-            accessor: "nomeDoCliente"
-          },
-          {
-            Header: "Litragem",
-            accessor: "litragem"
-          },
-          {
-            Header: "Valor Cobrado",
-            accessor: "valor"
-          },
-          {
-            Header: "Data",
-            accessor: "data"
-          }
-        ]
-      }
-    ],
-    []
-  );
 
   if (vendas.length === 0) {
     return (
@@ -59,7 +31,7 @@ export default function ListagemVendas() {
     <div id='body'>
       <NavBar />
       <div id='tabela-vendas'>
-        <Table columns={columns} data={vendas} />
+        <Table itens={vendas} />
       </div>
       <Footer />
     </div>
